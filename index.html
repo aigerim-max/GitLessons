@@ -1,11 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="kk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Git пен GitHub-ты үйренуге арналған қазақша 25 сабақтық жұмыс дәптері.">
+  <title>GitLessons — Git және GitHub</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--line:#30363d;--text:#e6edf3;--muted:#9da7b3;--blue:#58a6ff;--green:#3fb950;--yellow:#d29922}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+    header{padding:48px max(24px,calc((100% - 1100px)/2));background:linear-gradient(130deg,#13243b,#0d1117 72%);border-bottom:1px solid var(--line)}
+    h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin:8px 0 14px}h2{margin:0 0 12px}p{margin:8px 0}.eyebrow,.muted{color:var(--muted)}.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.8rem}
+    a{color:var(--blue)}main{max-width:1100px;margin:auto;padding:28px 22px 60px}.summary{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0}.pill{padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:10px 12px;font:inherit}.toolbar input{flex:1;min-width:220px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:14px}.lesson{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}.lesson h2{font-size:1.08rem;line-height:1.4}.num{color:var(--blue);font-weight:700}.status{display:inline-block;margin:4px 0 12px;padding:3px 9px;border-radius:999px;font-size:.8rem;border:1px solid var(--line);color:var(--muted)}.status.done{color:var(--green);border-color:#238636}.status.safe{color:#e3b341;border-color:#9e6a03}
+    .lesson h3{font-size:.86rem;color:var(--muted);margin:14px 0 4px}.lesson p{font-size:.94rem}.lesson pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:11px;background:#090c10;border:1px solid var(--line);border-radius:8px;color:#c9d1d9;font-size:.86rem}.quote{border-left:3px solid var(--blue);padding-left:11px;color:#c9d1d9;font-style:italic}.footer{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;color:var(--muted);font-size:.9rem}
+    @media(max-width:520px){header{padding:34px 20px}main{padding:20px 14px 42px}}
+  </style>
 </head>
 <body>
-    
+  <header>
+    <div class="eyebrow">Жаңадан үйренушілерге арналған жұмыс дәптері</div>
+    <h1>Git және GitHub</h1>
+    <p>25 сабақтың әрқайсысында қай жерді ашу, нені көрсету, қандай пәрмен қолдану және мұғалімге қалай түсіндіру жазылған.</p>
+    <p><a href="https://www.youtube.com/playlist?list=PLuY6eeDuleIMtvOvJBAbakwcIdEt7IAXT" target="_blank" rel="noreferrer">Бастапқы YouTube плейлистін ашу ↗</a></p>
+    <div class="summary"><span class="pill">Жоба: <strong>GitLessons</strong></span><span class="pill">Негізгі тармақ: <strong>main</strong></span><span class="pill">Дәлелмен расталған: <strong>#3 және #6</strong></span></div>
+  </header>
+  <main>
+    <p class="muted">Белгі тек осы компьютердегі репозиторийден не сіз жіберген сәтті терминал нәтижесінен расталған сабақтарға қойылды. Басқа сабақтар орындалды деп көрсетілмейді.</p>
+    <div class="toolbar"><input id="search" type="search" placeholder="Сабақты атауы бойынша іздеу…" aria-label="Сабақты іздеу"><select id="filter" aria-label="Сабақ күйін сүзу"><option value="all">Барлық сабақ</option><option value="done">Расталғандары</option><option value="todo">Әлі расталмағандары</option></select></div>
+    <section class="grid" id="lessons" aria-label="25 Git және GitHub сабағы"></section>
+    <div class="footer"><p><strong>Қауіпсіздік:</strong> №9 сабақ репозиторийді өшіруді көрсетеді. Бұл жобаңыз өшірілмейді; тек оқу мысалында түсіндіріледі.</p><p>GitHub репозиторийі: <a href="https://github.com/aigerim-max/GitLessons" target="_blank" rel="noreferrer">aigerim-max/GitLessons</a></p></div>
+  </main>
+  <script>
+    const lessons = [
+      {n:1,t:'Git деген не және не үшін керек?',ui:'VS Code → Explorer және Source Control белгішесі.',show:'Бір файлды өзгерткенге дейінгі және кейінгі нұсқасын; Git тарихындағы өзгерісті көрсетіңіз.',cmd:'git --version\ngit status',say:'Git — файлдар тарихын сақтап, өзгерістерді салыстыруға көмектесетін жүйе. GitHub — репозиторийді интернетте сақтайтын қызмет.'},
+      {n:2,t:'Git орнату',ui:'Windows-та Параметрлер → Apps → Installed apps; одан кейін VS Code → Terminal → New Terminal.',show:'Git орнатылғанын терминалдағы нұсқа нөмірімен көрсетіңіз.',cmd:'git --version',say:'Git компьютерге орнатылды. VS Code терминалы Git пәрмендерін қабылдап тұр.'},
+      {n:3,t:'Git репозиторийін инициализациялау',ui:'VS Code → File → Open Folder → GitLessons; Terminal → New Terminal.',show:'Explorer-дегі файлдарды және Git репозиторийіндегі алғашқы commit-ті көрсетіңіз.',cmd:'git status\ngit log --oneline -1',say:'Жоба Git репозиторийі ретінде сақталған. Алғашқы commit — бастапқы нұсқаның тарихтағы белгісі.',done:true},
+      {n:4,t:'Бір нәрсе істемей қалса не істеу керек?',ui:'VS Code → Terminal → New Terminal; GitHub-та репозиторийдің Code қойындысы.',show:'Қате мәтінін және remote URL-ді құпия деректерсіз салыстырыңыз.',cmd:'git status\ngit remote -v\ngit ls-remote origin',say:'Алдымен қатені толық оқып, тармақ пен remote мекенжайын тексеремін. Құпиясөзді немесе бір реттік кодты ешкімге жібермеймін.'},
+      {n:5,t:'GitHub-та аккаунт ашу',ui:'github.com → профиль белгішесі → Your repositories.',show:'Аккаунт атауын және GitLessons репозиторийін көрсетіңіз; жеке мәліметті жасырыңыз.',cmd:'git remote -v',say:'GitHub аккаунтым — aigerim-max. GitLessons репозиторийі осы аккаунтта орналасқан.'},
+      {n:6,t:'Кодты GitHub-қа жүктеу',ui:'VS Code → Terminal → New Terminal; GitHub → GitLessons → Code.',show:'Push сәтті шыққан терминал нәтижесін және GitHub-тағы файлдар тізімін көрсетіңіз.',cmd:'git push -u origin main',say:'Жергілікті main тармағын GitHub-тағы origin/main тармағына жібердім. Тармақтарды бақылау байланысы орнатылды.',done:true},
+      {n:7,t:'Графикалық интерфейспен жұмыс',ui:'VS Code → сол жақтағы Source Control белгішесі.',show:'Changes тізімін, файл жанындағы + батырмасын, commit өрісін және Sync Changes түймесін көрсетіңіз.',cmd:'git status',say:'Source Control арқылы өзгерістерді көремін, commit-ке қосамын және тарихқа сақтаймын.'},
+      {n:8,t:'Кодты жүктеудің аралас тәсілі',ui:'VS Code → Source Control; одан кейін Terminal → New Terminal.',show:'Файлды графикалық интерфейспен stage жасап, терминалмен push орындауды көрсетіңіз.',cmd:'git add .\ngit commit -m "Update lesson project"\ngit push',say:'Өзгерісті интерфейсте дайындап, терминалдан GitHub-қа жібердім. Екі тәсілді бірге қолдануға болады.'},
+      {n:9,t:'GitHub-та репозиторийді өшіру',ui:'GitHub → Settings → Danger Zone (тек оқып көрсетіңіз).',show:'Danger Zone аймағын көрсетіңіз, растау батырмасын баспаңыз.',cmd:'# Бұл сабақта ешқандай өшіру пәрмені орындалмайды',say:'Репозиторийді өшіру қайтарылмайтын әрекет болуы мүмкін. Мен өз GitLessons репозиторийімді өшірмеймін.' ,safe:true},
+      {n:10,t:'Репозиторийді клондау',ui:'GitHub → Code → HTTPS; VS Code терминалында бастапқы жобадан бөлек бумаға өтіңіз.',show:'Клон жасалған жаңа бума мен оның remote адресін көрсетіңіз.',cmd:'git clone https://github.com/aigerim-max/GitLessons.git\ncd GitLessons\ngit remote -v',say:'Clone GitHub-тағы репозиторийдің толық көшірмесін компьютерге жүктейді.'},
+      {n:11,t:'Git Graph кеңейтімі',ui:'VS Code → Extensions белгішесі → іздеу жолағына Git Graph жазыңыз.',show:'Кеңейтім беті мен репозиторий тармақтарының графигін көрсетіңіз.',cmd:'git log --oneline --graph --decorate --all',say:'Git Graph commit-тер мен тармақтарды көрнекі график түрінде көрсетеді.'},
+      {n:12,t:'Git бүркеншік атаулары (aliases)',ui:'VS Code → Terminal → New Terminal.',show:'Қысқа alias-пен тарихты шығарыңыз.',cmd:'git config --local alias.st "status --short --branch"\ngit config --local alias.lg "log --oneline --graph --decorate --all"\ngit st\ngit lg',say:'Alias ұзын Git пәрменін қысқа атаумен шақыруға мүмкіндік береді.'},
+      {n:13,t:'Кодтағы өзгерістерді қайтару',ui:'VS Code Explorer → сынақ файл; Source Control → Changes.',show:'Тек әдейі жасалған сынақ өзгерісін қайтарып, git status-ты көрсетіңіз. Маңызды файлды тексермей қайтармаңыз.',cmd:'git diff\ngit restore -- <сынақ-файл>',say:'Алдымен diff арқылы өзгерісті қараймын. Restore тек көрсетілген файлдағы commit жасалмаған өзгерісті қайтарады.'},
+      {n:14,t:'Тармақтармен жұмыс, 1-бөлім',ui:'VS Code → төменгі сол жақтағы тармақ атауы → Create new branch.',show:'Жаңа feature тармағын және тармақ атауын көрсетіңіз.',cmd:'git switch -c feature/lesson-demo\ngit branch',say:'Тармақ негізгі жобаны өзгертпей, бөлек жұмысты жүргізуге мүмкіндік береді.'},
+      {n:15,t:'Тармақтармен жұмыс, 2-бөлім',ui:'VS Code → Source Control; тармақ атауын төменгі сол жақтан тексеріңіз.',show:'Feature тармағында өзгеріс жасап, commit тарихын көрсетіңіз.',cmd:'git add .\ngit commit -m "Add lesson update"\ngit log --oneline --decorate -3',say:'Жаңа өзгерістерді feature тармағына commit жасадым. Негізгі main тармағы әзірге бөлек.'},
+      {n:16,t:'Тармақтарды біріктіру (merge)',ui:'VS Code терминалы → main тармағына ауысып, feature тармағын біріктіріңіз.',show:'Merge-ден кейінгі тарихты және main тармағын көрсетіңіз.',cmd:'git switch main\ngit merge feature/lesson-demo\ngit log --oneline --graph --decorate -5',say:'Feature тармағындағы дайын өзгерістерді main тармағына біріктірдім.'},
+      {n:17,t:'Markdown және README файлы',ui:'VS Code Explorer → New File → README.md.',show:'README тақырыбын, сипаттамасын және бөлімдерін көрсетіңіз.',cmd:'# GitLessons\n\nGit және GitHub бойынша оқу жобасы.',say:'README жобаның не үшін жасалғанын түсіндіреді және GitHub бетінде автоматты түрде көрінеді.'},
+      {n:18,t:'Markdown синтаксисі',ui:'README.md файлын ашыңыз → оң жақ батырма → Open Preview.',show:'Тақырып, тізім, сілтеме, код блогы және кестенің алдын ала көрінісін көрсетіңіз.',cmd:'# Тақырып\n- тізім\n**қалың мәтін**\n`git status`',say:'Markdown мәтінді оңай пішімдейді. Preview нәтижесін тексеруге көмектеседі.'},
+      {n:19,t:'Редактор баптауларын синхрондау',ui:'VS Code → Accounts белгішесі → Turn on Settings Sync.',show:'Sync баптауының күйін көрсетіңіз. Аккаунтқа кіру экранындағы кодты жарияламаңыз.',cmd:'# Бұл әрекет VS Code интерфейсінде орындалады',say:'Settings Sync кеңейтімдер мен редактор баптауларын құрылғылар арасында синхрондайды.'},
+      {n:20,t:'Gist деген не және онымен жұмыс',ui:'GitHub → жоғарғы оң жақтағы + → New gist.',show:'Құпия емес шағын мәтіннен жасалған Gist-ті көрсетіңіз.',cmd:'# Gist веб-интерфейсте жасалады; құпия дерек салынбайды',say:'Gist — код үзіндісі не шағын мәтінді бөлісуге арналған GitHub қызметі.'},
+      {n:21,t:'GitHub Pages тегін хостингі',ui:'GitHub → GitLessons → Settings → Pages → Build and deployment.',show:'Pages көзі ретінде main тармағы мен /(root) таңдауын көрсетіңіз.',cmd:'git push origin main',say:'GitHub Pages репозиторийдегі статикалық сайтты жариялайды. Жарияланған URL-ді Settings → Pages бөлімінен көремін.'},
+      {n:22,t:'GitHub портфолиосы және автор беті',ui:'GitHub → Profile → Edit profile; Profile README үшін username-тай бірдей жаңа репозиторий.',show:'Профильдің README preview-ін көрсетіңіз; email және жеке деректі ашық қалдырмаңыз.',cmd:'# Профиль README GitHub веб-интерфейсінде жасалады',say:'Профиль README өзім және жобаларым туралы қысқаша таныстырылым береді.'},
+      {n:23,t:'Fork және Pull Request',ui:'Басқа ашық репозиторий → Fork; fork көшірмесінде өзгеріс → Contribute → Open pull request.',show:'Fork иесін, өзгертілген тармақты және PR айырмасын көрсетіңіз.',cmd:'git push -u origin feature/my-change',say:'Fork — өз аккаунтымдағы көшірме. Pull Request арқылы өзгерісті бастапқы жобаға ұсынуға болады.'},
+      {n:24,t:'Файлдарды репозиторийден жасыру (.gitignore)',ui:'VS Code Explorer → New File → .gitignore.',show:'Игнорланған уақытша файлды және git status-та шықпай тұрғанын көрсетіңіз.',cmd:'git check-ignore -v temp.log\ngit status --short',say:'.gitignore Git-ке уақытша немесе жергілікті файлдарды қадағаламауды айтады.'},
+      {n:25,t:'Курсты қорытындылау',ui:'GitHub → GitLessons → Code және Commits; VS Code → Source Control.',show:'README, сайт, commit тарихы және GitHub-тағы соңғы push-ты көрсетіңіз.',cmd:'git status --short --branch\ngit log --oneline --graph --decorate --all\ngit push',say:'Git жұмыс тарихын сақтайды; GitHub оны қашықта сақтап, бөлісуге мүмкіндік береді.'}
+    ];
+    const list=document.querySelector('#lessons'), search=document.querySelector('#search'), filter=document.querySelector('#filter');
+    function render(){const q=search.value.trim().toLocaleLowerCase('kk'), f=filter.value;list.replaceChildren();lessons.filter(x=>(!q||(x.t+' '+x.n).toLocaleLowerCase('kk').includes(q))&&(f==='all'||(f==='done'?x.done:!x.done))).forEach(x=>{const card=document.createElement('article');card.className='lesson';const title=document.createElement('h2');title.innerHTML='<span class="num">#'+x.n+'</span> '+x.t;card.append(title);const status=document.createElement('span');status.className='status'+(x.done?' done':x.safe?' safe':'');status.textContent=x.done?'Расталған':x.safe?'Өшірілмейді':'Әлі расталмаған';card.append(status);for(const [label,text] of [['Қайда басу керек',x.ui],['Экранда көрсету',x.show],['Команда',x.cmd],['Апайға айту',x.say]]){const h=document.createElement('h3');h.textContent=label;card.append(h);if(label==='Команда'){const pre=document.createElement('pre'),code=document.createElement('code');code.textContent=text;pre.append(code);card.append(pre)}else{const p=document.createElement('p');p.textContent=text;card.append(p)}}list.append(card)})}
+    search.addEventListener('input',render);filter.addEventListener('change',render);render();
+  </script>
 </body>
 </html>
